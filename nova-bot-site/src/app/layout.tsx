@@ -1,6 +1,6 @@
 import './globals.css';
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata = {
   title: 'Nova Bot',
@@ -12,6 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Next.js</title> {/* Titel hinzugefügt */}
       </head>
       <body className="min-h-screen flex flex-col bg-gradient-to-b from-purple-700 via-purple-600 to-purple-500 text-white leading-relaxed">
         {/* Navbar */}
@@ -51,6 +52,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </div>
         </footer>
         <Analytics /> {/* Analytics-Komponente hinzugefügt */}
+        <SpeedInsights /> {/* SpeedInsights-Komponente hinzugefügt */}
       </body>
     </html>
   );
