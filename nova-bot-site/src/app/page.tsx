@@ -1,103 +1,92 @@
-import Image from "next/image";
+import Link from 'next/link';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 bg-black bg-opacity-50 backdrop-blur-md border-b border-gray-800 z-50 shadow-lg">
+        <div className="text-2xl font-bold text-purple-400">Nova Bot</div>
+        <div className="space-x-6 text-lg">
+          <Link href="/" className="hover:text-purple-300 transition">Home</Link>
+          <Link href="/dashboard" className="hover:text-purple-300 transition">Dashboard</Link>
+          <Link href="/support" className="hover:text-purple-300 transition">Support</Link>
+          <Link href="/login" className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md">
+            Login
+          </Link>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+      {/* Platzhalter für Navbar-Höhe */}
+      <div className="h-20"></div>
+
+      {/* Hero Section */}
+      <section className="flex flex-col items-center justify-center text-center py-36 px-8 md:px-16 bg-gradient-to-b from-purple-800 to-black">
+        <h1 className="text-5xl md:text-7xl font-extrabold mb-10">Willkommen bei Nova Bot</h1>
+        <p className="text-lg md:text-2xl text-gray-300 mb-14">
+          Der ultimative Discord Bot für Automatisierung, Moderation, Economy und mehr.
+        </p>
+        <Link href="/dashboard">
+          <button className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-12 rounded-full text-lg md:text-xl transition">
+            Starte jetzt
+          </button>
+        </Link>
+      </section>
+
+      {/* Features */}
+      <section className="py-28 px-8 md:px-16 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-16 text-center">
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Moderation</h2>
+            <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
+          </div>
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Rollen & Interaktion</h2>
+            <p className="text-gray-400">Selbstrollen, Role Hubs und ein Embed Designer.</p>
+          </div>
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Economy-System</h2>
+            <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
+          </div>
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Jobs-System</h2>
+            <p className="text-gray-400">Nutzer können Jobs wie „Janitor“ annehmen und Belohnungen verdienen.</p>
+          </div>
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Casino-System</h2>
+            <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
+          </div>
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Aktienmarkt</h2>
+            <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
+          </div>
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Channel-Shop</h2>
+            <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
+          </div>
+          <div className="bg-black bg-opacity-50 rounded-lg p-8 shadow-lg">
+            <h2 className="text-2xl font-semibold mb-4 text-purple-400">Website-Integration</h2>
+            <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Future Features */}
+      <section className="py-20 bg-[#0d0d0d] px-6">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6 text-purple-400">Zukünftige Features</h2>
+          <ul className="text-gray-400 space-y-4">
+            <li>Automatische Gewinnspiele und Turniere</li>
+            <li>Live-Analytics für Server-Admins</li>
+            <li>Support-System mit Tickets</li>
+            <li>Erweiterbares Plugin-System</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-6 text-center text-gray-500 border-t border-gray-800">
+        © 2025 Nova Bot. Alle Rechte vorbehalten.
       </footer>
-    </div>
+    </main>
   );
 }

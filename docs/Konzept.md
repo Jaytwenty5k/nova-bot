@@ -82,6 +82,7 @@ Klar! Hier ist dein **vollständiges Konzept** für den ultimativen All-in-One D
   - Sprache/Währung etc.
 - Optionaler Wechsel des Befehlspräfixes über die Website
 - Animationen & modernes Design (Anlehnung an StartIT, eigene UI)
+- **Hinweis**: Die vorhandene Website unter `/workspaces/nova-bot/nova-bot-site/.next` wird als Grundlage verwendet.
 
 ---
 
