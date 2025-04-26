@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 
 export default function HomePage() {
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const boxes = document.querySelectorAll('.animated-box');
+      boxes.forEach((box) => {
+        const rect = box.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        box.style.setProperty('--mouse-x', `${x}%`);
+        box.style.setProperty('--mouse-y', `${y}%`);
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
   return (
     <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
       {/* Navigation */}
