@@ -5,32 +5,18 @@ import Link from 'next/link';
 
 export default function HomePage() {
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const boxes = document.querySelectorAll('.animated-box');
-      boxes.forEach((box) => {
-        const rect = box.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-
-        if (box instanceof HTMLElement) {
-          // Aktualisieren der CSS-Variablen für die Schattenposition
-          box.style.setProperty('--mouse-x', `${x}px`);
-          box.style.setProperty('--mouse-y', `${y}px`);
-        }
-      });
-    };
-
     const boxes = document.querySelectorAll('.animated-box');
     boxes.forEach((box) => {
       if (box instanceof HTMLElement) {
-        box.addEventListener('mousemove', handleMouseMove);
+        // Entfernen der Event-Listener-Logik für die Kugel
+        box.removeEventListener('mousemove', () => {});
       }
     });
 
     return () => {
       boxes.forEach((box) => {
         if (box instanceof HTMLElement) {
-          box.removeEventListener('mousemove', handleMouseMove);
+          box.removeEventListener('mousemove', () => {});
         }
       });
     };

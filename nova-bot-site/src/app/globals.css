@@ -59,23 +59,30 @@ nav .space-x-6 > * {
   background-color: #1a001f; /* Sehr dunkles Lila */
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent; /* Standard-Rahmen */
 }
 
-.animated-box::before {
+.animated-box::after {
   content: '';
   position: absolute;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(200, 150, 247, 0.5), transparent);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
+  border: 2px solid rgba(200, 150, 247, 0.5); /* Lila Rahmen */
+  border-radius: 8px;
   pointer-events: none;
-  z-index: -1; /* Schatten im Hintergrund */
-  transition: transform 0.1s ease;
+  z-index: 1;
+  animation: animated-border 3s linear infinite;
 }
 
-.animated-box:hover::before {
-  transform: translate(var(--mouse-x), var(--mouse-y));
+@keyframes animated-border {
+  0% {
+    border-color: rgba(200, 150, 247, 0.5);
+  }
+  50% {
+    border-color: rgba(150, 100, 247, 0.8);
+  }
+  100% {
+    border-color: rgba(200, 150, 247, 0.5);
+  }
 }
 
 .animated-box:hover {
