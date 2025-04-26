@@ -53,7 +53,7 @@ nav .space-x-6 > * {
 
 /* Feature Cards */
 /* Sehr dunkles Lila für die Kästchen */
-/* Dynamisches Leuchten basierend auf der Cursorposition */
+/* Dynamischer Schatten basierend auf der Cursorposition */
 .animated-box {
   position: relative;
   background-color: #1a001f; /* Sehr dunkles Lila */
@@ -64,12 +64,18 @@ nav .space-x-6 > * {
 .animated-box::before {
   content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to var(--glow-direction, right), rgba(200, 150, 247, 0.5), transparent);
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(200, 150, 247, 0.5), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: -1; /* Leuchten im Hintergrund */
-  transition: background-position 0.1s ease;
+  z-index: -1; /* Schatten im Hintergrund */
+  transition: transform 0.1s ease;
+}
+
+.animated-box:hover::before {
+  transform: translate(var(--mouse-x), var(--mouse-y));
 }
 
 .animated-box:hover {
