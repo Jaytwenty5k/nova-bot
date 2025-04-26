@@ -13,8 +13,9 @@ export default function HomePage() {
         const y = e.clientY - rect.top;
 
         if (box instanceof HTMLElement) {
-          box.style.setProperty('--mouse-x', `${x}px`);
-          box.style.setProperty('--mouse-y', `${y}px`);
+          // Entfernen der Aktualisierung der CSS-Variablen
+          box.style.removeProperty('--mouse-x');
+          box.style.removeProperty('--mouse-y');
         }
       });
     };
