@@ -77,7 +77,7 @@ export default function HomePage() {
             <div className="animated-icon mt-6">
               {/* Jobs Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
             </div>
           </div>
@@ -88,7 +88,7 @@ export default function HomePage() {
             <div className="animated-icon mt-6">
               {/* Casino Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4m16 0H4" />
               </svg>
             </div>
           </div>
@@ -99,7 +99,7 @@ export default function HomePage() {
             <div className="animated-icon mt-6">
               {/* Aktienmarkt Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
             </div>
           </div>
@@ -110,7 +110,7 @@ export default function HomePage() {
             <div className="animated-icon mt-6">
               {/* Channel-Shop Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
             </div>
           </div>
@@ -121,7 +121,7 @@ export default function HomePage() {
             <div className="animated-icon mt-6">
               {/* Website-Integration Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
             </div>
           </div>
