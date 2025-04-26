@@ -41,41 +41,81 @@ export default function HomePage() {
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Moderation</h2>
             <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-8 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Rollen & Interaktion</h2>
             <p className="text-gray-400">Selbstrollen, Role Hubs und ein Embed Designer.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-8 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Economy-System</h2>
             <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-8 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Jobs-System</h2>
             <p className="text-gray-400">Nutzer können Jobs wie „Janitor“ annehmen und Belohnungen verdienen.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-8 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Casino-System</h2>
             <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-8 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Aktienmarkt</h2>
             <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-8 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Channel-Shop</h2>
             <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-8 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
             <h2 className="text-2xl font-semibold mb-4 text-purple-400">Website-Integration</h2>
             <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
+            <div className="animated-icon">
+              <svg className="w-8 h-8 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+              </svg>
+            </div>
           </div>
         </div>
       </section>

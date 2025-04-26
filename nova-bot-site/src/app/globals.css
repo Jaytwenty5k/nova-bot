@@ -44,3 +44,38 @@ html, body {
 .animate-gradient-border {
   animation: gradient-border 3s infinite;
 }
+
+/* Animation für Kästen */
+@keyframes box-hover {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(168, 85, 247, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.animated-box:hover {
+  animation: box-hover 0.5s ease-in-out;
+}
+
+/* Animation für Icons */
+@keyframes icon-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animated-icon {
+  display: inline-block;
+  animation: icon-spin 3s linear infinite;
+}
