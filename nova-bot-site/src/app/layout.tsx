@@ -1,4 +1,5 @@
 import './globals.css';
+import { Analytics } from "@vercel/analytics/react"; // Import hinzugefügt
 
 export const metadata = {
   title: 'Nova Bot',
@@ -48,6 +49,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </div>
           </div>
         </footer>
+        <Analytics /> {/* Analytics-Komponente hinzugefügt */}
       </body>
     </html>
   );
