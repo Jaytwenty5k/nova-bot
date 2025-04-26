@@ -60,34 +60,24 @@ nav .space-x-6 > * {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Dynamischer Schatten basierend auf der Cursorposition */
 .animated-box::before {
   content: '';
   position: absolute;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, rgba(200, 150, 247, 0.5), transparent);
-  transform: scale(0);
-  transition: transform 0.3s ease, left 0.3s ease, top 0.3s ease;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(200, 150, 247, 0.5), transparent);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
   pointer-events: none;
+  transition: transform 0.1s ease;
+  z-index: 0;
 }
 
 .animated-box:hover::before {
-  transform: scale(1);
+  transform: translate(var(--mouse-x), var(--mouse-y));
 }
 
 .animated-box:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(200, 150, 247, 0.5); /* Pastell-Lila Schatten */
-}
-
-/* Dynamische Schattenposition basierend auf der Maus */
-.animated-box:hover {
-  --mouse-x: 50%;
-  --mouse-y: 50%;
-}
-
-.animated-box:hover::before {
-  left: var(--mouse-x);
-  top: var(--mouse-y);
 }
