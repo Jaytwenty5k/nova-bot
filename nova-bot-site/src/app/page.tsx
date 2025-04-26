@@ -1,3 +1,4 @@
+import React from 'react'; // Sicherstellen, dass React importiert wird
 import Link from 'next/link';
 
 export default function HomePage() {
