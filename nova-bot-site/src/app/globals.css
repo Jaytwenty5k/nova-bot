@@ -53,7 +53,7 @@ nav .space-x-6 > * {
 
 /* Feature Cards */
 /* Sehr dunkles Lila für die Kästchen */
-/* Dynamischer Schatten basierend auf der Cursorposition */
+/* Dynamischer Schatten und Form basierend auf der Cursorposition */
 .animated-box {
   position: relative;
   background-color: #1a001f; /* Sehr dunkles Lila */
@@ -82,4 +82,9 @@ nav .space-x-6 > * {
 .animated-box:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(200, 150, 247, 0.5); /* Pastell-Lila Schatten */
+}
+
+.animated-box[data-mouse-x][data-mouse-y]::before {
+  left: var(--mouse-x);
+  top: var(--mouse-y);
 }
