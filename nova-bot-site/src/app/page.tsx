@@ -44,8 +44,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Moderation</h2>
             <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
             <div className="animated-icon mt-6">
-              {/* Moderation Icon */}
-              <div className="icon-moderation mx-auto"></div>
+              <img src="/icons/moderator.png" alt="Moderation Icon" className="w-16 h-16 mx-auto animate-bounce" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -53,8 +52,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Automod</h2>
             <p className="text-gray-400">Automatische Moderation für deinen Server.</p>
             <div className="animated-icon mt-6">
-              {/* Automod Icon */}
-              <div className="icon-automod mx-auto"></div>
+              <img src="/icons/automod.png" alt="Automod Icon" className="w-16 h-16 mx-auto animate-spin" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -62,8 +60,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Economy-System</h2>
             <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
             <div className="animated-icon mt-6">
-              {/* Economy Icon */}
-              <div className="icon-economy mx-auto"></div>
+              <img src="/icons/economy.jpg" alt="Economy Icon" className="w-16 h-16 mx-auto animate-pulse" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -71,8 +68,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Casino-System</h2>
             <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
             <div className="animated-icon mt-6">
-              {/* Casino Icon */}
-              <div className="icon-casino mx-auto"></div>
+              <img src="/icons/casino.png" alt="Casino Icon" className="w-16 h-16 mx-auto animate-bounce" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -80,8 +76,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Aktienmarkt</h2>
             <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
             <div className="animated-icon mt-6">
-              {/* Aktienmarkt Icon */}
-              <div className="icon-stocks mx-auto"></div>
+              <img src="/icons/aktien.png" alt="Aktienmarkt Icon" className="w-16 h-16 mx-auto animate-spin" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -89,8 +84,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Channel-Shop</h2>
             <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
             <div className="animated-icon mt-6">
-              {/* Channel-Shop Icon */}
-              <div className="icon-shop mx-auto"></div>
+              <img src="/icons/shop.png" alt="Channel-Shop Icon" className="w-16 h-16 mx-auto animate-pulse" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -98,8 +92,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Website-Integration</h2>
             <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
             <div className="animated-icon mt-6">
-              {/* Website-Integration Icon */}
-              <div className="icon-website mx-auto"></div>
+              <img src="/icons/website integration.png" alt="Website Integration Icon" className="w-16 h-16 mx-auto animate-spin" />
             </div>
           </div>
         </div>
