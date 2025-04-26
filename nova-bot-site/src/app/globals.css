@@ -57,16 +57,16 @@ nav .space-x-6 > * {
   margin-bottom: 2rem; /* Mehr Abstand zwischen den Kästen */
 }
 
-/* Animationen */
+/* Pastellfarben für die lila Linien */
 @keyframes gradient-border {
   0% {
-    border-color: rgba(128, 90, 213, 0.5);
+    border-color: rgba(168, 128, 213, 0.5); /* Pastell-Lila */
   }
   50% {
-    border-color: rgba(168, 85, 247, 1);
+    border-color: rgba(200, 150, 247, 0.8); /* Helleres Pastell-Lila */
   }
   100% {
-    border-color: rgba(128, 90, 213, 0.5);
+    border-color: rgba(168, 128, 213, 0.5);
   }
 }
 
@@ -74,37 +74,9 @@ nav .space-x-6 > * {
   animation: gradient-border 3s infinite;
 }
 
-/* Animation für Kästen */
-@keyframes box-hover {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  50% {
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(168, 85, 247, 0.5);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-}
-
+/* Hover-Animation bleibt aktiv, solange der Cursor darüber ist */
 .animated-box:hover {
-  animation: box-hover 0.5s ease-in-out;
-}
-
-/* Animation für Icons */
-@keyframes icon-spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.animated-icon {
-  display: inline-block;
-  animation: icon-spin 3s linear infinite;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(200, 150, 247, 0.5); /* Pastell-Lila Schatten */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
