@@ -1,0 +1,15 @@
+@keyframes gradient-border {
+  0% {
+    border-color: rgba(128, 90, 213, 0.5);
+  }
+  50% {
+    border-color: rgba(168, 85, 247, 1);
+  }
+  100% {
+    border-color: rgba(128, 90, 213, 0.5);
+  }
+}
+
+.animate-gradient-border {
+  animation: gradient-border 3s infinite;
+}
