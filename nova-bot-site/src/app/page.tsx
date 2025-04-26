@@ -9,12 +9,12 @@ export default function HomePage() {
       const boxes = document.querySelectorAll('.animated-box');
       boxes.forEach((box) => {
         const rect = box.getBoundingClientRect();
-        const x = ((e.clientX - rect.left) / rect.width) * 100;
-        const y = ((e.clientY - rect.top) / rect.height) * 100;
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
         if (box instanceof HTMLElement) {
-          box.style.setProperty('--mouse-x', `${x}%`);
-          box.style.setProperty('--mouse-y', `${y}%`);
+          box.style.setProperty('--mouse-x', `${x}px`);
+          box.style.setProperty('--mouse-y', `${y}px`);
         }
       });
     };
