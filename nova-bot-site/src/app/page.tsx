@@ -9,14 +9,25 @@ export default function HomePage() {
         const rect = box.getBoundingClientRect();
         const x = ((e.clientX - rect.left) / rect.width) * 100;
         const y = ((e.clientY - rect.top) / rect.height) * 100;
-        box.style.setProperty('--mouse-x', `${x}%`);
-        box.style.setProperty('--mouse-y', `${y}%`);
+
+        // Fehler 1: Überprüfung auf null für `box.style`
+        if (box instanceof HTMLElement) {
+          box.style.setProperty('--mouse-x', `${x}%`);
+          box.style.setProperty('--mouse-y', `${y}%`);
+        }
       });
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    // Fehler 2: Event-Listener nur auf `.animated-box`-Elemente beschränken
+    const boxes = document.querySelectorAll('.animated-box');
+    boxes.forEach((box) => {
+      box.addEventListener('mousemove', handleMouseMove);
+    });
+
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
+      boxes.forEach((box) => {
+        box.removeEventListener('mousemove', handleMouseMove);
+      });
     };
   }, []);
 
