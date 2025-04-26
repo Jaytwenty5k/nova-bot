@@ -2,16 +2,15 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
-// Import der Bilder
-import ModeratorIcon from '/public/icons/moderator.png';
-import AutomodIcon from '/public/icons/automod.png';
-import EconomyIcon from '/public/icons/economy.jpg';
-import CasinoIcon from '/public/icons/casino.png';
-import AktienIcon from '/public/icons/aktien.png';
-import ShopIcon from '/public/icons/shop.png';
-import WebsiteIntegrationIcon from '/public/icons/website integration.png';
+// Korrigierte Importpfade für die Bilder
+const ModeratorIcon = '/icons/moderator.png';
+const AutomodIcon = '/icons/automod.png';
+const EconomyIcon = '/icons/economy.jpg';
+const CasinoIcon = '/icons/casino.png';
+const AktienIcon = '/icons/aktien.png';
+const ShopIcon = '/icons/shop.png';
+const WebsiteIntegrationIcon = '/icons/website integration.png';
 
 export default function HomePage() {
   return (
@@ -54,7 +53,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Moderation</h2>
             <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
             <div className="animated-icon mt-6">
-              <Image src={ModeratorIcon} alt="Moderation Icon" width={64} height={64} className="mx-auto animate-uniform" />
+              <img src={ModeratorIcon} alt="Moderation Icon" className="w-16 h-16 mx-auto animate-uniform" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -62,7 +61,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Automod</h2>
             <p className="text-gray-400">Automatische Moderation für deinen Server.</p>
             <div className="animated-icon mt-6">
-              <Image src={AutomodIcon} alt="Automod Icon" width={64} height={64} className="mx-auto animate-uniform" />
+              <img src={AutomodIcon} alt="Automod Icon" className="w-16 h-16 mx-auto animate-uniform" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -70,7 +69,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Economy-System</h2>
             <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
             <div className="animated-icon mt-6">
-              <Image src={EconomyIcon} alt="Economy Icon" width={64} height={64} className="mx-auto animate-uniform" />
+              <img src={EconomyIcon} alt="Economy Icon" className="w-16 h-16 mx-auto animate-uniform" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -78,7 +77,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Casino-System</h2>
             <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
             <div className="animated-icon mt-6">
-              <Image src={CasinoIcon} alt="Casino Icon" width={64} height={64} className="mx-auto animate-uniform" />
+              <img src={CasinoIcon} alt="Casino Icon" className="w-16 h-16 mx-auto animate-uniform" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -86,7 +85,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Aktienmarkt</h2>
             <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
             <div className="animated-icon mt-6">
-              <Image src={AktienIcon} alt="Aktienmarkt Icon" width={64} height={64} className="mx-auto animate-uniform" />
+              <img src={AktienIcon} alt="Aktienmarkt Icon" className="w-16 h-16 mx-auto animate-uniform" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -94,7 +93,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Channel-Shop</h2>
             <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
             <div className="animated-icon mt-6">
-              <Image src={ShopIcon} alt="Channel-Shop Icon" width={64} height={64} className="mx-auto animate-uniform" />
+              <img src={ShopIcon} alt="Channel-Shop Icon" className="w-16 h-16 mx-auto animate-uniform" />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -102,7 +101,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Website-Integration</h2>
             <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
             <div className="animated-icon mt-6">
-              <Image src={WebsiteIntegrationIcon} alt="Website Integration Icon" width={64} height={64} className="mx-auto animate-uniform" />
+              <img src={WebsiteIntegrationIcon} alt="Website Integration Icon" className="w-16 h-16 mx-auto animate-uniform" />
             </div>
           </div>
         </div>
