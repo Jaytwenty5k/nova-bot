@@ -1,5 +1,5 @@
 import './globals.css';
-import { Analytics } from "@vercel/analytics/react"; // Import hinzugefügt
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata = {
   title: 'Nova Bot',
