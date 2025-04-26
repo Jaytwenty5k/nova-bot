@@ -90,83 +90,8 @@ nav .space-x-6 > * {
   box-shadow: 0 8px 20px rgba(200, 150, 247, 0.5); /* Pastell-Lila Schatten */
 }
 
-/* Animierte Icons */
-.icon-moderation {
-  width: 50px;
-  height: 50px;
-  background: url('/icons/moderation.svg') no-repeat center;
-  background-size: contain;
-  animation: bounce 2s infinite;
-}
-
-.icon-automod {
-  width: 50px;
-  height: 50px;
-  background: url('/icons/automod.svg') no-repeat center;
-  background-size: contain;
-  animation: rotate 3s linear infinite;
-}
-
-.icon-economy {
-  width: 50px;
-  height: 50px;
-  background: url('/icons/economy.svg') no-repeat center;
-  background-size: contain;
-  animation: pulse 2s infinite;
-}
-
-.icon-casino {
-  width: 50px;
-  height: 50px;
-  background: url('/icons/casino.svg') no-repeat center;
-  background-size: contain;
-  animation: spin 3s linear infinite;
-}
-
-.icon-stocks {
-  width: 50px;
-  height: 50px;
-  background: url('/icons/stocks.svg') no-repeat center;
-  background-size: contain;
-  animation: bounce 2s infinite;
-}
-
-.icon-shop {
-  width: 50px;
-  height: 50px;
-  background: url('/icons/shop.svg') no-repeat center;
-  background-size: contain;
-  animation: pulse 2s infinite;
-}
-
-.icon-website {
-  width: 50px;
-  height: 50px;
-  background: url('/icons/website.svg') no-repeat center;
-  background-size: contain;
-  animation: rotate 3s linear infinite;
-}
-
-/* Animationen */
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes rotate {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
+/* Einheitliche Animation für alle Icons */
+@keyframes uniform-animation {
   0%, 100% {
     transform: scale(1);
   }
@@ -175,11 +100,6 @@ nav .space-x-6 > * {
   }
 }
 
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+.animate-uniform {
+  animation: uniform-animation 2s infinite ease-in-out;
 }
