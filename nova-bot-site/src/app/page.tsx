@@ -13,9 +13,12 @@ export default function HomePage() {
         const y = e.clientY - rect.top;
 
         if (box instanceof HTMLElement) {
-          // Entfernen der Aktualisierung der CSS-Variablen
-          box.style.removeProperty('--mouse-x');
-          box.style.removeProperty('--mouse-y');
+          // Bestimmen der Richtung des Leuchtens basierend auf der Cursorposition
+          const horizontal = x < rect.width / 2 ? 'left' : 'right';
+          const vertical = y < rect.height / 2 ? 'top' : 'bottom';
+          const glowDirection = `${vertical} ${horizontal}`;
+
+          box.style.setProperty('--glow-direction', glowDirection);
         }
       });
     };
