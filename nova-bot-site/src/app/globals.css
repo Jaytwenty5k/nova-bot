@@ -55,7 +55,7 @@ nav .space-x-6 > * {
 /* Dunkles Lila für die Kästchen */
 .animated-box {
   position: relative;
-  background-color: #2a013d; /* Dunkles Lila */
+  background-color: #2c0040; /* Dunkles Lila */
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
