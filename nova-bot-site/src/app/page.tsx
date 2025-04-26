@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 // Korrigierte Importpfade für die Bilder
@@ -13,6 +13,15 @@ const ShopIcon = '/icons/shop.png';
 const WebsiteIntegrationIcon = '/icons/website integration.png';
 
 export default function HomePage() {
+  const [fallbacks, setFallbacks] = useState({});
+
+  const handleImageError = (key: string, fallbackPath: string) => {
+    setFallbacks((prev) => ({
+      ...prev,
+      [key]: fallbackPath,
+    }));
+  };
+
   return (
     <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
       {/* Navigation */}
@@ -53,7 +62,12 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Moderation</h2>
             <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
             <div className="animated-icon mt-6">
-              <img src={ModeratorIcon} alt="Moderation Icon" className="w-16 h-16 mx-auto animate-uniform" />
+              <img
+                src={fallbacks['moderator'] || ModeratorIcon}
+                alt="Moderation Icon"
+                className="w-16 h-16 mx-auto animate-uniform"
+                onError={() => handleImageError('moderator', '/fallback/moderator.png')}
+              />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -61,7 +75,12 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Automod</h2>
             <p className="text-gray-400">Automatische Moderation für deinen Server.</p>
             <div className="animated-icon mt-6">
-              <img src={AutomodIcon} alt="Automod Icon" className="w-16 h-16 mx-auto animate-uniform" />
+              <img
+                src={fallbacks['automod'] || AutomodIcon}
+                alt="Automod Icon"
+                className="w-16 h-16 mx-auto animate-uniform"
+                onError={() => handleImageError('automod', '/fallback/automod.png')}
+              />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -69,7 +88,12 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Economy-System</h2>
             <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
             <div className="animated-icon mt-6">
-              <img src={EconomyIcon} alt="Economy Icon" className="w-16 h-16 mx-auto animate-uniform" />
+              <img
+                src={fallbacks['economy'] || EconomyIcon}
+                alt="Economy Icon"
+                className="w-16 h-16 mx-auto animate-uniform"
+                onError={() => handleImageError('economy', '/fallback/economy.jpg')}
+              />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -77,7 +101,12 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Casino-System</h2>
             <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
             <div className="animated-icon mt-6">
-              <img src={CasinoIcon} alt="Casino Icon" className="w-16 h-16 mx-auto animate-uniform" />
+              <img
+                src={fallbacks['casino'] || CasinoIcon}
+                alt="Casino Icon"
+                className="w-16 h-16 mx-auto animate-uniform"
+                onError={() => handleImageError('casino', '/fallback/casino.png')}
+              />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -85,7 +114,12 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Aktienmarkt</h2>
             <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
             <div className="animated-icon mt-6">
-              <img src={AktienIcon} alt="Aktienmarkt Icon" className="w-16 h-16 mx-auto animate-uniform" />
+              <img
+                src={fallbacks['aktien'] || AktienIcon}
+                alt="Aktienmarkt Icon"
+                className="w-16 h-16 mx-auto animate-uniform"
+                onError={() => handleImageError('aktien', '/fallback/aktien.png')}
+              />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -93,7 +127,12 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Channel-Shop</h2>
             <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
             <div className="animated-icon mt-6">
-              <img src={ShopIcon} alt="Channel-Shop Icon" className="w-16 h-16 mx-auto animate-uniform" />
+              <img
+                src={fallbacks['shop'] || ShopIcon}
+                alt="Channel-Shop Icon"
+                className="w-16 h-16 mx-auto animate-uniform"
+                onError={() => handleImageError('shop', '/fallback/shop.png')}
+              />
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
@@ -101,7 +140,12 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Website-Integration</h2>
             <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
             <div className="animated-icon mt-6">
-              <img src={WebsiteIntegrationIcon} alt="Website Integration Icon" className="w-16 h-16 mx-auto animate-uniform" />
+              <img
+                src={fallbacks['website'] || WebsiteIntegrationIcon}
+                alt="Website Integration Icon"
+                className="w-16 h-16 mx-auto animate-uniform"
+                onError={() => handleImageError('website', '/fallback/website integration.png')}
+              />
             </div>
           </div>
         </div>
