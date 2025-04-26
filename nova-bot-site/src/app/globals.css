@@ -53,30 +53,29 @@ nav .space-x-6 > * {
 
 /* Feature Cards */
 .animated-box {
-  padding: 2rem; /* Mehr Innenabstand in den Kästen */
-  margin-bottom: 2rem; /* Mehr Abstand zwischen den Kästen */
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Pastellfarben für die lila Linien */
-@keyframes gradient-border {
-  0% {
-    border-color: rgba(168, 128, 213, 0.5); /* Pastell-Lila */
-  }
-  50% {
-    border-color: rgba(200, 150, 247, 0.8); /* Helleres Pastell-Lila */
-  }
-  100% {
-    border-color: rgba(168, 128, 213, 0.5);
-  }
+.animated-box::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(200, 150, 247, 0.5), transparent);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease;
+  pointer-events: none;
 }
 
-.animate-gradient-border {
-  animation: gradient-border 3s infinite;
+.animated-box:hover::before {
+  transform: translate(-50%, -50%) scale(1);
 }
 
-/* Hover-Animation bleibt aktiv, solange der Cursor darüber ist */
 .animated-box:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(200, 150, 247, 0.5); /* Pastell-Lila Schatten */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }

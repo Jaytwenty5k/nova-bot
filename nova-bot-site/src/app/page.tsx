@@ -42,20 +42,20 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Moderation</h2>
             <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
             <div className="animated-icon mt-6">
-              {/* Moderation Icon */}
+              {/* Admin Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-3-3v6m-7 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 11c1.38 0 2.5-1.12 2.5-2.5S13.38 6 12 6s-2.5 1.12-2.5 2.5S10.62 11 12 11zm0 0v6m-6 0h12" />
               </svg>
             </div>
           </div>
           <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
             <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Rollen & Interaktion</h2>
-            <p className="text-gray-400">Selbstrollen, Role Hubs und ein Embed Designer.</p>
+            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Automod</h2>
+            <p className="text-gray-400">Automatische Moderation für deinen Server.</p>
             <div className="animated-icon mt-6">
-              {/* Rollen Icon */}
+              {/* Roboter Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 01-8 0m8 0a4 4 0 01-8 0m8 0v10m-8 0v-10m4 10v2m0-2h-4m4 0h4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-3-3v6m-7 4h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
               </svg>
             </div>
           </div>
@@ -64,18 +64,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Economy-System</h2>
             <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
             <div className="animated-icon mt-6">
-              {/* Economy Icon */}
-              <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 0V4m0 16v-4" />
-              </svg>
-            </div>
-          </div>
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Jobs-System</h2>
-            <p className="text-gray-400">Nutzer können Jobs wie „Janitor“ annehmen und Belohnungen verdienen.</p>
-            <div className="animated-icon mt-6">
-              {/* Jobs Icon */}
+              {/* Geldschein Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
@@ -86,9 +75,9 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Casino-System</h2>
             <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
             <div className="animated-icon mt-6">
-              {/* Casino Icon */}
+              {/* Poker Chips Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4m16 0H4" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
               </svg>
             </div>
           </div>
@@ -97,7 +86,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Aktienmarkt</h2>
             <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
             <div className="animated-icon mt-6">
-              {/* Aktienmarkt Icon */}
+              {/* Trend Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
@@ -108,7 +97,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Channel-Shop</h2>
             <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
             <div className="animated-icon mt-6">
-              {/* Channel-Shop Icon */}
+              {/* Kanal-Kauf Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
@@ -119,7 +108,7 @@ export default function HomePage() {
             <h2 className="text-2xl font-semibold mb-6 text-purple-400">Website-Integration</h2>
             <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
             <div className="animated-icon mt-6">
-              {/* Website-Integration Icon */}
+              {/* Website Icon */}
               <svg className="w-10 h-10 text-purple-400 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M9 21V10m6 11V10M5 6h14M7 3h10" />
               </svg>
