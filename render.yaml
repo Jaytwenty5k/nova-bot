@@ -6,4 +6,5 @@ services:
     startCommand: npm start
     plan: free
     envVars:
-      NODE_ENV: production
+      - key: NODE_ENV
+        value: production
