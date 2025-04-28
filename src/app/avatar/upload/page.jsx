@@ -8,4 +8,4 @@ export default function UploadPage() {
 }
 
 // Verschieben Sie die Seite in eine andere Route-Gruppe oder ändern Sie den Pfad
-// Beispiel: Verschieben Sie die Seite in eine Gruppe wie `(pages)` oder ändern Sie den Pfad zu `/avatar/upload-page`
+// Beispiel: Ändern Sie den Pfad zu `/avatar/upload-page`
