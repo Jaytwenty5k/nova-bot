@@ -3,7 +3,15 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const PlaceholderIcon = '/icons/uniform-icon.png'; // Einheitliches Icon
+const icons = {
+  moderation: '/assets/icons/moderation-icon.png',
+  automod: '/assets/icons/automod-icon.png',
+  economy: '/assets/icons/economy-icon.png',
+  casino: '/assets/icons/casino-icon.png',
+  aktien: '/assets/icons/aktien-icon.png',
+  shop: '/assets/icons/shop-icon.png',
+  website: '/assets/icons/website-icon.png',
+};
 
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Zustand für die Anmeldung
@@ -29,10 +37,10 @@ export default function HomePage() {
     }
   };
 
-  const handleImageError = (key: string, fallbackPath: string) => {
+  const handleImageError = (key: string) => {
     setFallbacks((prev) => ({
       ...prev,
-      [key]: fallbackPath,
+      [key]: '/assets/icons/default-icon.png', // Fallback-Icon
     }));
   };
 
@@ -122,17 +130,17 @@ export default function HomePage() {
       <section className="py-32 px-8 md:px-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 text-center">
           {/* Feature Cards */}
-          {['moderation', 'automod', 'economy', 'casino', 'aktien', 'shop', 'website'].map((feature) => (
+          {(Object.keys(icons) as Array<keyof typeof icons>).map((feature) => (
             <div key={feature} className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box snake-animation">
               <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
               <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">{feature}</h2>
               <p className="text-gray-400">Beschreibung für {feature}.</p>
               <div className="animated-icon mt-6">
                 <img
-                  src={fallbacks[feature] || PlaceholderIcon}
+                  src={fallbacks[feature] || icons[feature] || '/assets/icons/default-icon.png'}
                   alt={`${feature} Icon`}
                   className="w-16 h-16 mx-auto"
-                  onError={() => handleImageError(feature, PlaceholderIcon)}
+                  onError={() => handleImageError(feature)}
                 />
               </div>
             </div>
