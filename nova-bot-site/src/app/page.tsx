@@ -1,18 +1,24 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const PlaceholderIcon = '/icons/placeholder.png'; // Generisches Icon
+const PlaceholderIcon = '/icons/uniform-icon.png'; // Einheitliches Icon
 
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Zustand für die Anmeldung
   const [showLoginPopup, setShowLoginPopup] = useState(false); // Zustand für das Pop-up
   const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
+  const [userProfile, setUserProfile] = useState<{ avatar: string; username: string } | null>(null);
 
   const handleLogin = () => {
     // Leitet den Benutzer zu Discord weiter
     window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&redirect_uri=https://bot-nova.vercel.app/&response_type=code&scope=identify";
+  };
+
+  const handleInviteBot = () => {
+    // Shortcut, um den Bot in einen Server einzuladen
+    window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&permissions=8&scope=bot";
   };
 
   const handleAccessDashboard = () => {
@@ -30,20 +36,46 @@ export default function HomePage() {
     }));
   };
 
+  useEffect(() => {
+    // Simulierte API-Abfrage, um Benutzerinformationen zu erhalten
+    const fetchUserProfile = async () => {
+      // Beispiel: Ersetzen Sie dies durch Ihre tatsächliche API-Abfrage
+      const response = await fetch('/api/user'); // API-Endpunkt für Benutzerinformationen
+      if (response.ok) {
+        const data = await response.json();
+        setUserProfile({ avatar: data.avatar, username: data.username });
+        setIsLoggedIn(true);
+      }
+    };
+
+    fetchUserProfile();
+  }, []);
+
   return (
     <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 md:p-8 bg-black bg-opacity-50 backdrop-blur-md border-b border-gray-800 z-50 shadow-lg">
         <div className="text-2xl font-bold text-purple-400">Nova Bot</div>
-        <div className="space-x-6 text-lg">
+        <div className="space-x-6 text-lg flex items-center">
           <Link href="/" className="hover:text-purple-300 transition">Home</Link>
           <Link href="#" className="hover:text-purple-300 transition">Support</Link>
-          <button
-            onClick={handleLogin}
-            className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md"
-          >
-            Login
-          </button>
+          {isLoggedIn && userProfile ? (
+            <div className="flex items-center space-x-4">
+              <img
+                src={userProfile.avatar}
+                alt="Profilbild"
+                className="w-10 h-10 rounded-full border-2 border-purple-400"
+              />
+              <span className="text-purple-300">{userProfile.username}</span>
+            </div>
+          ) : (
+            <button
+              onClick={handleLogin}
+              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md snake-animation"
+            >
+              Login
+            </button>
+          )}
         </div>
       </nav>
 
@@ -57,8 +89,8 @@ export default function HomePage() {
           Der ultimative Discord Bot für Automatisierung, Moderation, Economy und mehr.
         </p>
         <button
-          onClick={handleAccessDashboard}
-          className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition"
+          onClick={handleInviteBot}
+          className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 snake-animation"
         >
           Starte jetzt
         </button>
@@ -72,7 +104,7 @@ export default function HomePage() {
             <p className="mb-6">Du musst dich anmelden, um auf das Dashboard zuzugreifen.</p>
             <button
               onClick={handleLogin}
-              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded transition"
+              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded transition snake-animation"
             >
               Login mit Discord
             </button>
@@ -90,110 +122,21 @@ export default function HomePage() {
       <section className="py-32 px-8 md:px-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 text-center">
           {/* Feature Cards */}
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box animate-pulse">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Moderation</h2>
-            <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
-            <div className="animated-icon mt-6">
-              <img
-                src={fallbacks['moderation'] || PlaceholderIcon}
-                alt="Moderation Icon"
-                className="w-16 h-16 mx-auto"
-                onError={() => handleImageError('moderation', PlaceholderIcon)}
-              />
+          {['moderation', 'automod', 'economy', 'casino', 'aktien', 'shop', 'website'].map((feature) => (
+            <div key={feature} className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box snake-animation">
+              <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
+              <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">{feature}</h2>
+              <p className="text-gray-400">Beschreibung für {feature}.</p>
+              <div className="animated-icon mt-6">
+                <img
+                  src={fallbacks[feature] || PlaceholderIcon}
+                  alt={`${feature} Icon`}
+                  className="w-16 h-16 mx-auto"
+                  onError={() => handleImageError(feature, PlaceholderIcon)}
+                />
+              </div>
             </div>
-          </div>
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box animate-pulse">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Automod</h2>
-            <p className="text-gray-400">Automatische Moderation für deinen Server.</p>
-            <div className="animated-icon mt-6">
-              <img
-                src={fallbacks['automod'] || PlaceholderIcon}
-                alt="Automod Icon"
-                className="w-16 h-16 mx-auto"
-                onError={() => handleImageError('automod', PlaceholderIcon)}
-              />
-            </div>
-          </div>
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box animate-pulse">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Economy-System</h2>
-            <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
-            <div className="animated-icon mt-6">
-              <img
-                src={fallbacks['economy'] || PlaceholderIcon}
-                alt="Economy Icon"
-                className="w-16 h-16 mx-auto"
-                onError={() => handleImageError('economy', PlaceholderIcon)}
-              />
-            </div>
-          </div>
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box animate-pulse">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Casino-System</h2>
-            <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
-            <div className="animated-icon mt-6">
-              <img
-                src={fallbacks['casino'] || PlaceholderIcon}
-                alt="Casino Icon"
-                className="w-16 h-16 mx-auto"
-                onError={() => handleImageError('casino', PlaceholderIcon)}
-              />
-            </div>
-          </div>
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box animate-pulse">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Aktienmarkt</h2>
-            <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
-            <div className="animated-icon mt-6">
-              <img
-                src={fallbacks['aktien'] || PlaceholderIcon}
-                alt="Aktienmarkt Icon"
-                className="w-16 h-16 mx-auto"
-                onError={() => handleImageError('aktien', PlaceholderIcon)}
-              />
-            </div>
-          </div>
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box animate-pulse">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Channel-Shop</h2>
-            <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
-            <div className="animated-icon mt-6">
-              <img
-                src={fallbacks['shop'] || PlaceholderIcon}
-                alt="Channel-Shop Icon"
-                className="w-16 h-16 mx-auto"
-                onError={() => handleImageError('shop', PlaceholderIcon)}
-              />
-            </div>
-          </div>
-          <div className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box animate-pulse">
-            <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-            <h2 className="text-2xl font-semibold mb-6 text-purple-400">Website-Integration</h2>
-            <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
-            <div className="animated-icon mt-6">
-              <img
-                src={fallbacks['website'] || PlaceholderIcon}
-                alt="Website Integration Icon"
-                className="w-16 h-16 mx-auto"
-                onError={() => handleImageError('website', PlaceholderIcon)}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Future Features */}
-      <section className="py-32 bg-[#0d0d0d] px-8 md:px-20">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8 text-purple-400">Zukünftige Features</h2>
-          <ul className="text-gray-400 space-y-6">
-            <li>Automatische Gewinnspiele und Turniere</li>
-            <li>Live-Analytics für Server-Admins</li>
-            <li>Support-System mit Tickets</li>
-            <li>Erweiterbares Plugin-System</li>
-          </ul>
+          ))}
         </div>
       </section>
 

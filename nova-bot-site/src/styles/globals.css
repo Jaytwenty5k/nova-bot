@@ -47,3 +47,40 @@
 .animated-icon {
   animation: icon-spin 5s linear infinite;
 }
+
+.snake-animation {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.snake-animation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, #6b46c1, #805ad5, #9f7aea, #6b46c1);
+  background-size: 400% 400%;
+  z-index: -1;
+  animation: snake 4s linear infinite;
+}
+
+@keyframes snake {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-50%);
+  }
+  75% {
+    transform: translateX(0) translateY(-50%);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
