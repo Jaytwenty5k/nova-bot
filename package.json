@@ -4,5 +4,9 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0"
+  },
+  "scripts": {
+    "build": "next build",
+    "start": "next start"
   }
 }
