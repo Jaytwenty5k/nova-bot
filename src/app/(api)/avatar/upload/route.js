@@ -15,7 +15,4 @@ export async function POST(request) {
 
 export const config = {
   runtime: 'edge',
-  api: {
-    path: '/api/avatar/upload', // Ändern Sie den Pfad, um Konflikte zu vermeiden
-  },
 };
