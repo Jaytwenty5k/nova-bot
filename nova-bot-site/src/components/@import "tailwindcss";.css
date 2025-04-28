@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Reset von Margin und Padding für das gesamte Layout */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100%; /* Setzt die Höhe des Body auf 100% des Viewports */
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Footer bleibt am unteren Rand */
+footer {
+  background-color: var(--background); /* Setzt Hintergrundfarbe des Footers */
+  color: var(--foreground);
+  text-align: center;
+  padding: 20px; /* Optimiertes Padding */
+  margin-top: auto; /* Verhindert das Überlappen mit dem Inhalt */
+}
+
+/* Navbar-Stile */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--background);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+nav a {
+  color: var(--foreground);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #a855f7; /* Lila Hover-Farbe */
+}
+
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--foreground);
+}
