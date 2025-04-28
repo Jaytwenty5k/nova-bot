@@ -3,17 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 
-// Korrigierte Importpfade für die Bilder
-const ModeratorIcon = '/icons/moderator.png';
-const AutomodIcon = '/icons/automod.png';
-const EconomyIcon = '/icons/economy.jpg';
-const CasinoIcon = '/icons/casino.png';
-const AktienIcon = '/icons/aktien.png';
-const ShopIcon = '/icons/shop.png';
-const WebsiteIntegrationIcon = '/icons/website integration.png';
+const PlaceholderIcon = '/icons/placeholder.png'; // Generisches Icon
 
 export default function HomePage() {
-  const [fallbacks, setFallbacks] = useState({});
+  const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
 
   const handleImageError = (key: string, fallbackPath: string) => {
     setFallbacks((prev) => ({
@@ -63,10 +56,10 @@ export default function HomePage() {
             <p className="text-gray-400">Automoderation, manuelle Befehle und Protokollierung.</p>
             <div className="animated-icon mt-6">
               <img
-                src={fallbacks['moderator'] || ModeratorIcon}
+                src={fallbacks['moderation'] || PlaceholderIcon}
                 alt="Moderation Icon"
                 className="w-16 h-16 mx-auto animate-uniform"
-                onError={() => handleImageError('moderator', '/fallback/moderator.png')}
+                onError={() => handleImageError('moderation', PlaceholderIcon)}
               />
             </div>
           </div>
@@ -76,10 +69,10 @@ export default function HomePage() {
             <p className="text-gray-400">Automatische Moderation für deinen Server.</p>
             <div className="animated-icon mt-6">
               <img
-                src={fallbacks['automod'] || AutomodIcon}
+                src={fallbacks['automod'] || PlaceholderIcon}
                 alt="Automod Icon"
                 className="w-16 h-16 mx-auto animate-uniform"
-                onError={() => handleImageError('automod', '/fallback/automod.png')}
+                onError={() => handleImageError('automod', PlaceholderIcon)}
               />
             </div>
           </div>
@@ -89,10 +82,10 @@ export default function HomePage() {
             <p className="text-gray-400">Währungen, tägliche Belohnungen und ein Bank-/Wallet-System.</p>
             <div className="animated-icon mt-6">
               <img
-                src={fallbacks['economy'] || EconomyIcon}
+                src={fallbacks['economy'] || PlaceholderIcon}
                 alt="Economy Icon"
                 className="w-16 h-16 mx-auto animate-uniform"
-                onError={() => handleImageError('economy', '/fallback/economy.jpg')}
+                onError={() => handleImageError('economy', PlaceholderIcon)}
               />
             </div>
           </div>
@@ -102,10 +95,10 @@ export default function HomePage() {
             <p className="text-gray-400">Erstelle dein eigenes Casino mit einzigartigen Spielautomaten.</p>
             <div className="animated-icon mt-6">
               <img
-                src={fallbacks['casino'] || CasinoIcon}
+                src={fallbacks['casino'] || PlaceholderIcon}
                 alt="Casino Icon"
                 className="w-16 h-16 mx-auto animate-uniform"
-                onError={() => handleImageError('casino', '/fallback/casino.png')}
+                onError={() => handleImageError('casino', PlaceholderIcon)}
               />
             </div>
           </div>
@@ -115,10 +108,10 @@ export default function HomePage() {
             <p className="text-gray-400">Kaufe Anteile an Kanälen und handle sie basierend auf Aktivität.</p>
             <div className="animated-icon mt-6">
               <img
-                src={fallbacks['aktien'] || AktienIcon}
+                src={fallbacks['aktien'] || PlaceholderIcon}
                 alt="Aktienmarkt Icon"
                 className="w-16 h-16 mx-auto animate-uniform"
-                onError={() => handleImageError('aktien', '/fallback/aktien.png')}
+                onError={() => handleImageError('aktien', PlaceholderIcon)}
               />
             </div>
           </div>
@@ -128,10 +121,10 @@ export default function HomePage() {
             <p className="text-gray-400">Kaufe und verwalte Kanäle mit In-Game-Währung.</p>
             <div className="animated-icon mt-6">
               <img
-                src={fallbacks['shop'] || ShopIcon}
+                src={fallbacks['shop'] || PlaceholderIcon}
                 alt="Channel-Shop Icon"
                 className="w-16 h-16 mx-auto animate-uniform"
-                onError={() => handleImageError('shop', '/fallback/shop.png')}
+                onError={() => handleImageError('shop', PlaceholderIcon)}
               />
             </div>
           </div>
@@ -141,10 +134,10 @@ export default function HomePage() {
             <p className="text-gray-400">Dashboard, Bot-Einstellungen und Economy-Verwaltung.</p>
             <div className="animated-icon mt-6">
               <img
-                src={fallbacks['website'] || WebsiteIntegrationIcon}
+                src={fallbacks['website'] || PlaceholderIcon}
                 alt="Website Integration Icon"
                 className="w-16 h-16 mx-auto animate-uniform"
-                onError={() => handleImageError('website', '/fallback/website integration.png')}
+                onError={() => handleImageError('website', PlaceholderIcon)}
               />
             </div>
           </div>

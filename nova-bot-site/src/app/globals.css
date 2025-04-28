@@ -103,3 +103,16 @@ nav .space-x-6 > * {
 .animate-uniform {
   animation: uniform-animation 2s infinite ease-in-out;
 }
+
+.animated-icon {
+  animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
