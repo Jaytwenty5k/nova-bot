@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Remove yarn.lock if present
 # yarn.lock
+
+# Add package-lock.json to ignore list
+package-lock.json
