@@ -28,14 +28,16 @@ export default function HomePage() {
   const [showLoginPopup, setShowLoginPopup] = useState(false); // Zustand für das Pop-up
   const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
   const [userProfile, setUserProfile] = useState<{ avatar: string; username: string } | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Zustand für die Authentifizierung
 
   useEffect(() => {
-    // Check if user is already logged in
+    // Check if user is authenticated
     const storedUser = localStorage.getItem('userProfile');
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
       setUserProfile(parsedUser);
       setIsLoggedIn(true);
+      setIsAuthenticated(true); // Benutzer ist authentifiziert
     }
   }, []);
 
@@ -45,6 +47,7 @@ export default function HomePage() {
     localStorage.setItem('userProfile', JSON.stringify(userData));
     setUserProfile(userData);
     setIsLoggedIn(true);
+    setIsAuthenticated(true); // Benutzer ist authentifiziert
   };
 
   async function fakeDiscordLogin() {
