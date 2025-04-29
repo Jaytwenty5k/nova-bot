@@ -100,7 +100,7 @@ export default function HomePage() {
         <div className="space-x-6 text-lg flex items-center">
           <Link href="/" className="hover:text-purple-300 transition">Home</Link>
           <Link href="#" className="hover:text-purple-300 transition">Support</Link>
-          {isLoggedIn && userProfile ? (
+          {isAuthenticated && isLoggedIn && userProfile ? (
             <div className="flex items-center space-x-4">
               <Image
                 src={userProfile.avatar || '/assets/icons/default-avatar.png'}
