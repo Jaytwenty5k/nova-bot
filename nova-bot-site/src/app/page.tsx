@@ -15,7 +15,7 @@ const icons = {
 };
 
 function loadImage(src: string, fallback: string): string {
-  const img = new Image();
+  const img = document.createElement('img'); // Verwende document.createElement für die Bildinstanz
   img.src = src;
   img.onerror = () => {
     img.src = fallback;
