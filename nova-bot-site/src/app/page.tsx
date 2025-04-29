@@ -13,6 +13,15 @@ const icons = {
   website: '/assets/icons/website-icon.png',
 };
 
+function loadImage(src, fallback) {
+  const img = new Image();
+  img.src = src;
+  img.onerror = () => {
+    img.src = fallback;
+  };
+  return img.src;
+}
+
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Zustand für die Anmeldung
   const [showLoginPopup, setShowLoginPopup] = useState(false); // Zustand für das Pop-up
