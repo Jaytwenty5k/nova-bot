@@ -6,29 +6,18 @@ function LoginComponent() {
 
     useEffect(() => {
         // Check if user is already logged in
-        const userId = localStorage.getItem('userId');
-        if (userId) {
-            fetch(`/api/getUser/${userId}`)
-                .then((res) => {
-                    if (res.ok) {
-                        return res.json();
-                    }
-                    throw new Error('User not found');
-                })
-                .then((data) => {
-                    if (data.profilePicture) {
-                        setIsLoggedIn(true);
-                        setProfilePicture(data.profilePicture);
-                    }
-                })
-                .catch((err) => console.error(err));
+        const storedUser = localStorage.getItem('userProfile');
+        if (storedUser) {
+            const parsedUser = JSON.parse(storedUser);
+            setProfilePicture(parsedUser.profilePicture);
+            setIsLoggedIn(true);
         }
     }, []);
 
     const handleLogin = async () => {
         // Simulate Discord login
         const userData = await fakeDiscordLogin(); // Replace with actual Discord API call
-        localStorage.setItem('userId', userData.id);
+        localStorage.setItem('userProfile', JSON.stringify(userData));
         setProfilePicture(userData.profilePicture);
         setIsLoggedIn(true);
 
@@ -58,8 +47,8 @@ function LoginComponent() {
 // Mock function for Discord login
 async function fakeDiscordLogin() {
     return {
-        id: '1234567890',
         profilePicture: 'https://cdn.discordapp.com/avatars/1234567890/avatar.png',
+        username: 'DiscordUser',
     };
 }
 

@@ -19,10 +19,30 @@ export default function HomePage() {
   const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
   const [userProfile, setUserProfile] = useState<{ avatar: string; username: string } | null>(null);
 
-  const handleLogin = () => {
-    // Leitet den Benutzer zu Discord weiter
-    window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&redirect_uri=https://bot-nova.vercel.app/&response_type=code&scope=identify";
+  useEffect(() => {
+    // Check if user is already logged in
+    const storedUser = localStorage.getItem('userProfile');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserProfile(parsedUser);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  const handleLogin = async () => {
+    // Simulate Discord login
+    const userData = await fakeDiscordLogin(); // Replace with actual Discord API call
+    localStorage.setItem('userProfile', JSON.stringify(userData));
+    setUserProfile(userData);
+    setIsLoggedIn(true);
   };
+
+  async function fakeDiscordLogin() {
+    return {
+      avatar: 'https://cdn.discordapp.com/avatars/1234567890/avatar.png',
+      username: 'DiscordUser',
+    };
+  }
 
   const handleInviteBot = () => {
     // Shortcut, um den Bot in einen Server einzuladen
