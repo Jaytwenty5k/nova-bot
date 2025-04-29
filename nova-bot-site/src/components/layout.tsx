@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import './globals.css';
 import { Inter } from 'next/font/google';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="de">
-      <head>
+      <Head>
         {/* Metadaten */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta charSet="UTF-8" />
@@ -26,7 +27,7 @@ export default function RootLayout({
         <meta name="description" content={metadata.description} />
         <meta name="author" content={metadata.author} />
         <meta name="keywords" content={metadata.keywords} />
-      </head>
+      </Head>
       <body className={inter.className}>
         {/* Navbar */}
         <nav className="fixed w-full top-0 left-0 z-50 flex justify-between items-center px-8 md:px-16 py-8 bg-black bg-opacity-50 backdrop-blur-xl shadow-lg">

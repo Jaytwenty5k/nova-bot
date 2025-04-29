@@ -14,7 +14,7 @@ const icons = {
   website: '/assets/icons/website-icon.png',
 };
 
-function loadImage(src, fallback) {
+function loadImage(src: string, fallback: string): string {
   const img = new Image();
   img.src = src;
   img.onerror = () => {

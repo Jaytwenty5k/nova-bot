@@ -1,5 +1,6 @@
 import './globals.css';
 import { Analytics } from "@vercel/analytics/react";
+import Head from 'next/head';
 
 export const metadata = {
   title: 'Nova Bot',
@@ -9,11 +10,11 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de">
-      <head>
+      <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Nova Bot</title>
         {/* Weitere Meta-Tags oder Links hier */}
-      </head>
+      </Head>
       <body>{children}</body>
     </html>
   );
