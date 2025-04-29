@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LoginComponent from './components/LoginComponent';
+import Image from 'next/image';
 
 function App() {
     const [user, setUser] = useState(null); // Zustand für den Benutzer
@@ -9,7 +10,13 @@ function App() {
             <h1>Welcome to Nova Bot</h1>
             {user ? (
                 <div>
-                    <img src={user.avatar} alt="Discord Avatar" style={{ width: '50px', borderRadius: '50%' }} />
+                    <Image
+                        src={user.avatar || '/assets/icons/default-avatar.png'}
+                        alt="Discord Avatar"
+                        width={50}
+                        height={50}
+                        style={{ borderRadius: '50%' }}
+                    />
                     <span>{user.name}</span>
                 </div>
             ) : (

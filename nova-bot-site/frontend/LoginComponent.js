@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 function LoginComponent() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -32,10 +33,12 @@ function LoginComponent() {
     return (
         <div>
             {isLoggedIn ? (
-                <img
-                    src={profilePicture}
+                <Image
+                    src={profilePicture || '/assets/icons/default-avatar.png'}
                     alt="Discord Profile"
-                    style={{ borderRadius: '50%', width: '50px', height: '50px' }}
+                    width={50}
+                    height={50}
+                    style={{ borderRadius: '50%' }}
                 />
             ) : (
                 <button onClick={handleLogin}>Login with Discord</button>

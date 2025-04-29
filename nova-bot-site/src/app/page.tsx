@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const icons = {
   moderation: '/assets/icons/moderation-icon.png',
@@ -98,13 +99,12 @@ export default function HomePage() {
           <Link href="#" className="hover:text-purple-300 transition">Support</Link>
           {isLoggedIn && userProfile ? (
             <div className="flex items-center space-x-4">
-              <img
+              <Image
                 src={userProfile.avatar || '/assets/icons/default-avatar.png'}
                 alt="Profilbild"
+                width={40}
+                height={40}
                 className="w-10 h-10 rounded-full border-2 border-purple-400"
-                onError={(e) => {
-                  e.currentTarget.src = '/assets/icons/default-avatar.png';
-                }}
               />
               <span className="text-purple-300">{userProfile.username}</span>
             </div>
@@ -168,11 +168,12 @@ export default function HomePage() {
               <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">{feature}</h2>
               <p className="text-gray-400">Beschreibung für {feature}.</p>
               <div className="animated-icon mt-6">
-                <img
+                <Image
                   src={fallbacks[feature] || icons[feature] || '/assets/icons/default-icon.png'}
                   alt={`${feature} Icon`}
+                  width={64}
+                  height={64}
                   className="w-16 h-16 mx-auto"
-                  onError={() => handleImageError(feature)}
                 />
               </div>
             </div>
