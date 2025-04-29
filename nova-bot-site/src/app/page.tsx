@@ -103,7 +103,7 @@ export default function HomePage() {
           {isAuthenticated && isLoggedIn && userProfile ? (
             <div className="flex items-center space-x-4">
               <Image
-                src={userProfile.avatar || '/assets/icons/default-avatar.png'}
+                src={userProfile.avatar}
                 alt="Profilbild"
                 width={40}
                 height={40}
