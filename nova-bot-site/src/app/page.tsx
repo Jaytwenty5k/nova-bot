@@ -90,9 +90,12 @@ export default function HomePage() {
           {isLoggedIn && userProfile ? (
             <div className="flex items-center space-x-4">
               <img
-                src={userProfile.avatar}
+                src={userProfile.avatar || '/assets/icons/default-avatar.png'}
                 alt="Profilbild"
                 className="w-10 h-10 rounded-full border-2 border-purple-400"
+                onError={(e) => {
+                  e.currentTarget.src = '/assets/icons/default-avatar.png';
+                }}
               />
               <span className="text-purple-300">{userProfile.username}</span>
             </div>
