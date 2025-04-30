@@ -33,6 +33,7 @@ export default function HomePage() {
   const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [userProfile, setUserProfile] = useState<UserProfile>(null);
   const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleInviteBot = () => {
     window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&permissions=8&scope=bot";
@@ -60,6 +61,25 @@ export default function HomePage() {
     fetchUserProfile();
   }, []);
 
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/auth/check'); // API-Endpunkt zur Überprüfung der Authentifizierung
+        if (response.ok) {
+          const data = await response.json();
+          setIsAuthenticated(data.isAuthenticated);
+          if (data.isAuthenticated) {
+            setUserProfile({ avatar: data.avatar, username: data.username });
+          }
+        }
+      } catch (error) {
+        console.error('Fehler bei der Authentifizierungsprüfung:', error);
+      }
+    };
+
+    checkAuth();
+  }, []);
+
   return (
     <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
       {/* Navigation */}
@@ -68,6 +88,27 @@ export default function HomePage() {
         <div className="space-x-6 text-lg flex items-center">
           <Link href="/" className="hover:text-purple-300 transition">Home</Link>
           <Link href="#" className="hover:text-purple-300 transition">Support</Link>
+          {isAuthenticated && userProfile ? (
+            <div className="flex items-center space-x-4">
+              <Image
+                src={userProfile.avatar}
+                alt="Profilbild"
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-full border-2 border-purple-400"
+              />
+              <span className="text-purple-300">{userProfile.username}</span>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                window.location.href = "https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify";
+              }}
+              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md snake-animation"
+            >
+              Login mit Discord
+            </button>
+          )}
         </div>
       </nav>
 
@@ -85,14 +126,6 @@ export default function HomePage() {
           className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 snake-animation"
         >
           Starte jetzt
-        </button>
-        <button
-          onClick={() => {
-            window.location.href = "https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify";
-          }}
-          className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md snake-animation"
-        >
-          Login mit Discord
         </button>
       </section>
 
