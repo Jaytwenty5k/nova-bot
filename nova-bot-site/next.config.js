@@ -1,6 +1,6 @@
-import type { NextConfig } from "next";
+import { NextConfig } from "next";
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
     domains: ['cdn.discordapp.com'], // Erlaubt das Laden von Bildern von Discord
   },
