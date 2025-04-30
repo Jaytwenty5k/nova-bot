@@ -17,6 +17,7 @@ export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // Zustand für die Anmeldung
   const [showLoginPopup, setShowLoginPopup] = useState(false); // Zustand für das Pop-up
   const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
+  const [userProfile, setUserProfile] = useState<{ avatar: string; username: string } | null>(null);
 
   const handleLogin = () => {
     // Leitet den Benutzer zu Discord weiter
@@ -55,6 +56,25 @@ export default function HomePage() {
     };
 
     fetchUserProfile();
+  }, []);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch('/api/auth/check'); // API-Endpunkt zur Überprüfung der Authentifizierung
+        if (response.ok) {
+          const data = await response.json();
+          if (data.isAuthenticated) {
+            setUserProfile({ avatar: data.avatar, username: data.username });
+            setIsLoggedIn(true);
+          }
+        }
+      } catch (error) {
+        console.error('Fehler bei der Authentifizierungsprüfung:', error);
+      }
+    };
+
+    checkAuth();
   }, []);
 
   return (
@@ -134,9 +154,12 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-
+      <footer className="py-8 text-center text-gray-500 border-t border-gray-800">
+                By Jayden Wopperer 
+                      </footer>
       {/* Footer */}
       <footer className="py-8 text-center text-gray-500 border-t border-gray-800">
+
         © 2025 Nova Bot. Alle Rechte vorbehalten.
       </footer>
     </main>
