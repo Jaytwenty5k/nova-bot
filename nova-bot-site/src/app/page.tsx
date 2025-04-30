@@ -60,22 +60,30 @@ export default function HomePage() {
 
   useEffect(() => {
     const checkAuth = async () => {
-      try {
-        const response = await fetch('/api/auth/check'); // API-Endpunkt zur Überprüfung der Authentifizierung
-        if (response.ok) {
-          const data = await response.json();
-          if (data.isAuthenticated) {
-            setUserProfile({ avatar: data.avatar, username: data.username });
-            setIsLoggedIn(true);
-          }
+        try {
+            const userId = localStorage.getItem('userId'); // Benutzer-ID aus dem lokalen Speicher abrufen
+            if (!userId) {
+                console.warn('Keine Benutzer-ID gefunden.');
+                return;
+            }
+
+            const response = await fetch(`/api/auth/check?userId=${userId}`); // Benutzer-ID an den Endpunkt übergeben
+            if (response.ok) {
+                const data = await response.json();
+                if (data.isAuthenticated) {
+                    setUserProfile({ avatar: data.avatar, username: data.username });
+                    setIsLoggedIn(true);
+                }
+            } else {
+                console.warn('Benutzer nicht authentifiziert:', response.status);
+            }
+        } catch (error) {
+            console.error('Fehler bei der Authentifizierungsprüfung:', error);
         }
-      } catch (error) {
-        console.error('Fehler bei der Authentifizierungsprüfung:', error);
-      }
     };
 
     checkAuth();
-  }, []);
+}, []);
 
   return (
     <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
