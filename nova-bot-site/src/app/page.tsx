@@ -80,6 +80,33 @@ export default function HomePage() {
     checkAuth();
   }, []);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('userProfile');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserProfile(parsedUser);
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      // Simulate Discord login
+      const response = await fetch('/api/auth/discord/callback'); // Replace with actual API endpoint
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('userProfile', JSON.stringify({
+          avatar: data.avatar,
+          username: data.username,
+        }));
+        setUserProfile({ avatar: data.avatar, username: data.username });
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
+
   return (
     <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
       {/* Navigation */}
