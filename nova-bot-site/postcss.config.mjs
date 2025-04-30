@@ -1,7 +1,6 @@
 export default {
   plugins: {
-    tailwindcss: {},
+    '@tailwindcss/postcss': {},
     autoprefixer: {},
   },
 };
-// Compare this snippet from nova-bot-site/package.json:
