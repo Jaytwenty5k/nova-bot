@@ -102,7 +102,7 @@ export default function HomePage() {
           ) : (
             <button
               onClick={() => {
-                window.location.href = "https://discord.com/oauth2/authorize?client_id=YOUR_CLIENT_ID&redirect_uri=YOUR_REDIRECT_URI&response_type=code&scope=identify";
+                window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&redirect_uri=https://bot-nova.vercel.app/&response_type=code&scope=identify";
               }}
               className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md snake-animation"
             >
