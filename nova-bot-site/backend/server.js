@@ -66,6 +66,20 @@ app.get('/api/auth/discord/callback', async (req, res) => {
     }
 });
 
+app.get('/api/auth/check', (req, res) => {
+    const userId = req.query.userId; // Erwartet eine Benutzer-ID als Abfrageparameter
+    if (!userId || !tempDatabase[userId]) {
+        return res.status(401).send({ isAuthenticated: false });
+    }
+
+    const user = tempDatabase[userId];
+    res.status(200).send({
+        isAuthenticated: true,
+        avatar: user.profilePicture,
+        username: user.username,
+    });
+});
+
 app.listen(3000, () => {
     console.log('Server running on http://localhost:3000');
 });
