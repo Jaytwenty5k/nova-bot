@@ -5,6 +5,14 @@ import Image from 'next/image';
 function App() {
     const [user, setUser] = useState(null); // Zustand für den Benutzer
 
+    const handleLoginSuccess = (userData) => {
+        if (userData && userData.name && userData.avatar) {
+            setUser(userData);
+        } else {
+            console.error('Login fehlgeschlagen oder unvollständige Benutzerdaten erhalten.');
+        }
+    };
+
     return (
         <div>
             <h1>Welcome to Nova Bot</h1>
@@ -20,7 +28,7 @@ function App() {
                     <span>{user.name}</span>
                 </div>
             ) : (
-                <LoginComponent onLogin={setUser} />
+                <LoginComponent onLogin={handleLoginSuccess} />
             )}
         </div>
     );
