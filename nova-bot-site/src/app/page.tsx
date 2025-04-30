@@ -83,9 +83,15 @@ export default function HomePage() {
   useEffect(() => {
     const storedUser = localStorage.getItem('userProfile');
     if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setUserProfile(parsedUser);
-      setIsAuthenticated(true);
+      try {
+        const parsedUser = JSON.parse(storedUser);
+        if (parsedUser.avatar && parsedUser.username) {
+          setUserProfile(parsedUser);
+          setIsAuthenticated(true);
+        }
+      } catch (error) {
+        console.error('Fehler beim Parsen der Benutzerinformationen:', error);
+      }
     }
   }, []);
 
