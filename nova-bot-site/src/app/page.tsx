@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const icons = {
   moderation: '/assets/icons/moderation-icon.png',
@@ -13,28 +14,29 @@ const icons = {
   website: '/assets/icons/website-icon.png',
 };
 
-export default function HomePage() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Zustand für die Anmeldung
-  const [showLoginPopup, setShowLoginPopup] = useState(false); // Zustand für das Pop-up
-  const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
-  const [userProfile, setUserProfile] = useState<{ avatar: string; username: string } | null>(null);
-
-  const handleLogin = () => {
-    // Leitet den Benutzer zu Discord weiter
-    window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&redirect_uri=https://bot-nova.vercel.app/&response_type=code&scope=identify";
+function loadImage(src: string, fallback: string): string {
+  const img = document.createElement('img'); // Verwende document.createElement für die Bildinstanz
+  img.src = src;
+  img.onerror = () => {
+    img.src = fallback;
   };
+  return img.src;
+}
+
+type UserProfile = {
+  avatar: string;
+  username: string;
+} | null;
+
+export default function HomePage() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [showLoginPopup, setShowLoginPopup] = useState(false);
+  const [userProfile, setUserProfile] = useState<UserProfile>(null);
+  const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleInviteBot = () => {
-    // Shortcut, um den Bot in einen Server einzuladen
     window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&permissions=8&scope=bot";
-  };
-
-  const handleAccessDashboard = () => {
-    if (!isLoggedIn) {
-      setShowLoginPopup(true); // Zeigt das Pop-up an, wenn der Benutzer nicht angemeldet ist
-    } else {
-      window.location.href = "/dashboard"; // Leitet zum Dashboard weiter
-    }
   };
 
   const handleImageError = (key: string) => {
@@ -51,6 +53,7 @@ export default function HomePage() {
       const response = await fetch('/api/user'); // API-Endpunkt für Benutzerinformationen
       if (response.ok) {
         const data = await response.json();
+        setUserProfile({ avatar: data.avatar, username: data.username });
         setIsLoggedIn(true);
       }
     };
@@ -60,30 +63,49 @@ export default function HomePage() {
 
   useEffect(() => {
     const checkAuth = async () => {
-        try {
-            const userId = localStorage.getItem('userId'); // Benutzer-ID aus dem lokalen Speicher abrufen
-            if (!userId) {
-                console.warn('Keine Benutzer-ID gefunden.');
-                return;
-            }
-
-            const response = await fetch(`/api/auth/check?userId=${userId}`); // Benutzer-ID an den Endpunkt übergeben
-            if (response.ok) {
-                const data = await response.json();
-                if (data.isAuthenticated) {
-                    setUserProfile({ avatar: data.avatar, username: data.username });
-                    setIsLoggedIn(true);
-                }
-            } else {
-                console.warn('Benutzer nicht authentifiziert:', response.status);
-            }
-        } catch (error) {
-            console.error('Fehler bei der Authentifizierungsprüfung:', error);
+      try {
+        const response = await fetch('/api/auth/check'); // API-Endpunkt zur Überprüfung der Authentifizierung
+        if (response.ok) {
+          const data = await response.json();
+          setIsAuthenticated(data.isAuthenticated);
+          if (data.isAuthenticated) {
+            setUserProfile({ avatar: data.avatar, username: data.username });
+          }
         }
+      } catch (error) {
+        console.error('Fehler bei der Authentifizierungsprüfung:', error);
+      }
     };
 
     checkAuth();
-}, []);
+  }, []);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem('userProfile');
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setUserProfile(parsedUser);
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      // Simulate Discord login
+      const response = await fetch('/api/auth/discord/callback'); // Replace with actual API endpoint
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('userProfile', JSON.stringify({
+          avatar: data.avatar,
+          username: data.username,
+        }));
+        setUserProfile({ avatar: data.avatar, username: data.username });
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
+  };
 
   return (
     <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
@@ -93,12 +115,27 @@ export default function HomePage() {
         <div className="space-x-6 text-lg flex items-center">
           <Link href="/" className="hover:text-purple-300 transition">Home</Link>
           <Link href="#" className="hover:text-purple-300 transition">Support</Link>
-          <button
-            onClick={handleLogin}
-            className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md snake-animation"
-          >
-            Login
-          </button>
+          {isAuthenticated && userProfile ? (
+            <div className="flex items-center space-x-4">
+              <Image
+                src={userProfile.avatar}
+                alt="Profilbild"
+                width={40}
+                height={40}
+                className="w-10 h-10 rounded-full border-2 border-purple-400"
+              />
+              <span className="text-purple-300">{userProfile.username}</span>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&redirect_uri=https://bot-nova.vercel.app/&response_type=code&scope=identify";
+              }}
+              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md snake-animation"
+            >
+              Login mit Discord
+            </button>
+          )}
         </div>
       </nav>
 
@@ -119,28 +156,6 @@ export default function HomePage() {
         </button>
       </section>
 
-      {/* Login-Pop-up */}
-      {showLoginPopup && (
-        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
-          <div className="bg-white text-black p-8 rounded-lg shadow-lg text-center">
-            <h2 className="text-2xl font-bold mb-4">Bitte anmelden</h2>
-            <p className="mb-6">Du musst dich anmelden, um auf das Dashboard zuzugreifen.</p>
-            <button
-              onClick={handleLogin}
-              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded transition snake-animation"
-            >
-              Login mit Discord
-            </button>
-            <button
-              onClick={() => setShowLoginPopup(false)}
-              className="mt-4 text-gray-500 hover:text-gray-700 transition"
-            >
-              Abbrechen
-            </button>
-          </div>
-        </div>
-      )}
-
       {/* Features */}
       <section className="py-32 px-8 md:px-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 text-center">
@@ -151,23 +166,21 @@ export default function HomePage() {
               <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">{feature}</h2>
               <p className="text-gray-400">Beschreibung für {feature}.</p>
               <div className="animated-icon mt-6">
-                <img
+                <Image
                   src={fallbacks[feature] || icons[feature] || '/assets/icons/default-icon.png'}
                   alt={`${feature} Icon`}
+                  width={64}
+                  height={64}
                   className="w-16 h-16 mx-auto"
-                  onError={() => handleImageError(feature)}
                 />
               </div>
             </div>
           ))}
         </div>
       </section>
-      <footer className="py-8 text-center text-gray-500 border-t border-gray-800">
-                By Jayden Wopperer 
-                      </footer>
+
       {/* Footer */}
       <footer className="py-8 text-center text-gray-500 border-t border-gray-800">
-
         © 2025 Nova Bot. Alle Rechte vorbehalten.
       </footer>
     </main>
