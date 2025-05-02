@@ -206,15 +206,15 @@ export default function HomePage() {
           {(Object.keys(icons) as Array<keyof typeof icons>).map((feature) => (
             <div
               key={feature}
-              className={`relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-105 ${
+              className={`relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden transition-transform duration-500 ease-in-out transform ${
                 featuresInView ? "animate-slide-up" : "opacity-0"
-              }`}
+              } hover:scale-105 hover:shadow-2xl`}
             >
               <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
-              <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">
+              <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize animate-pulse">
                 {feature}
               </h2>
-              <p className="text-gray-400">
+              <p className="text-gray-400 animate-fade-in">
                 Erkunde die {feature}-Funktionalität von Octra Bot.
               </p>
               <div className="mt-6">
@@ -223,7 +223,7 @@ export default function HomePage() {
                   alt={`${feature} Icon`}
                   width={64}
                   height={64}
-                  className="w-16 h-16 mx-auto animate-fade-in"
+                  className="w-16 h-16 mx-auto animate-bounce"
                 />
               </div>
             </div>
