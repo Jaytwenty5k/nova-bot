@@ -14,128 +14,53 @@ const icons = {
   website: '/assets/icons/website-icon.png',
 };
 
-function loadImage(src: string, fallback: string): string {
-  const img = document.createElement('img'); // Verwende document.createElement für die Bildinstanz
-  img.src = src;
-  img.onerror = () => {
-    img.src = fallback;
-  };
-  return img.src;
-}
-
 type UserProfile = {
   avatar: string;
   username: string;
 } | null;
 
+const saveUserToDatabase = async (user: UserProfile) => {
+  if (!user) return;
+  await fetch('/api/save-user', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(user),
+  });
+};
+
 export default function HomePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [showLoginPopup, setShowLoginPopup] = useState(false);
   const [userProfile, setUserProfile] = useState<UserProfile>(null);
-  const [fallbacks, setFallbacks] = useState<Record<string, string>>({});
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const handleInviteBot = () => {
-    window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&permissions=8&scope=bot";
-  };
-
-  const handleImageError = (key: string) => {
-    setFallbacks((prev) => ({
-      ...prev,
-      [key]: '/assets/icons/default-icon.png', // Fallback-Icon
-    }));
+  const navigateTo = (url: string) => {
+    window.location.href = url;
   };
 
   useEffect(() => {
-    // Simulierte API-Abfrage, um Benutzerinformationen zu erhalten
     const fetchUserProfile = async () => {
-      // Beispiel: Ersetzen Sie dies durch Ihre tatsächliche API-Abfrage
-      const response = await fetch('/api/user'); // API-Endpunkt für Benutzerinformationen
+      const response = await fetch('/api/user');
       if (response.ok) {
         const data = await response.json();
-        setUserProfile({ avatar: data.avatar, username: data.username });
+        const user = { avatar: data.avatar, username: data.username };
+        setUserProfile(user);
         setIsLoggedIn(true);
+        await saveUserToDatabase(user); // Speichere die Daten in der Datenbank
       }
     };
 
     fetchUserProfile();
   }, []);
 
-  useEffect(() => {
-    const checkAuth = async () => {
-      try {
-        const response = await fetch('/api/auth/check'); // API-Endpunkt zur Überprüfung der Authentifizierung
-        if (response.ok) {
-          const data = await response.json();
-          setIsAuthenticated(data.isAuthenticated);
-          if (data.isAuthenticated) {
-            setUserProfile({ avatar: data.avatar, username: data.username });
-          }
-        }
-      } catch (error) {
-        console.error('Fehler bei der Authentifizierungsprüfung:', error);
-      }
-    };
-
-    checkAuth();
-  }, []);
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('userProfile');
-    if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setUserProfile(parsedUser);
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  const handleLogin = async () => {
-    try {
-      // Simulate Discord login
-      const response = await fetch('/api/auth/discord/callback'); // Replace with actual API endpoint
-      if (response.ok) {
-        const data = await response.json();
-        localStorage.setItem('userProfile', JSON.stringify({
-          avatar: data.avatar,
-          username: data.username,
-        }));
-        setUserProfile({ avatar: data.avatar, username: data.username });
-        setIsAuthenticated(true);
-      }
-    } catch (error) {
-      console.error('Login failed:', error);
-    }
-  };
-
   return (
-    <main className="bg-[#0d0d0d] min-h-screen text-white font-sans">
+    <main className="bg-gradient-to-b from-gray-900 via-black to-gray-900 min-h-screen text-white font-sans">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 md:p-8 bg-black bg-opacity-50 backdrop-blur-md border-b border-gray-800 z-50 shadow-lg">
-        <div className="text-2xl font-bold text-purple-400">Nova Bot</div>
+      <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 md:p-8 bg-black bg-opacity-70 backdrop-blur-md border-b border-gray-800 z-50 shadow-lg">
+        <div className="text-3xl font-extrabold text-purple-400">Octra Bot</div>
         <div className="space-x-6 text-lg flex items-center">
           <Link href="/" className="hover:text-purple-300 transition">Home</Link>
           <Link href="#" className="hover:text-purple-300 transition">Support</Link>
-          {isAuthenticated && userProfile ? (
-            <div className="flex items-center space-x-4">
-              <Image
-                src={userProfile.avatar}
-                alt="Profilbild"
-                width={40}
-                height={40}
-                className="w-10 h-10 rounded-full border-2 border-purple-400"
-              />
-              <span className="text-purple-300">{userProfile.username}</span>
-            </div>
-          ) : (
-            <button
-              onClick={() => {
-                window.location.href = "https://discord.com/oauth2/authorize?client_id=1363531532127437003&redirect_uri=https://bot-nova.vercel.app/&response_type=code&scope=identify";
-              }}
-              className="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded transition shadow-md snake-animation"
-            >
-              Login mit Discord
-            </button>
-          )}
         </div>
       </nav>
 
@@ -144,30 +69,50 @@ export default function HomePage() {
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-40 px-8 md:px-20 bg-gradient-to-b from-purple-800 to-black">
-        <h1 className="text-5xl md:text-7xl font-extrabold mb-12">Willkommen bei Nova Bot</h1>
+        <h1 className="text-6xl md:text-8xl font-extrabold mb-12 animate-pulse">Willkommen bei Octra Bot</h1>
         <p className="text-lg md:text-2xl text-gray-300 mb-16">
-          Der ultimative Discord Bot für Automatisierung, Moderation, Economy und mehr.
+          Der leistungsstarke Discord Bot für Automatisierung, Moderation, Wirtschaft und mehr.
         </p>
-        <button
-          onClick={handleInviteBot}
-          className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 snake-animation"
-        >
-          Starte jetzt
-        </button>
+        <div className="flex flex-col md:flex-row gap-6">
+          <button
+            onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1365320188576403486&permissions=8&scope=bot")}
+            className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105"
+          >
+            Bot einladen
+          </button>
+          {!isLoggedIn ? (
+            <button
+              onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1365320188576403486&redirect_uri=www.bot-nova.vercel.app&response_type=code&scope=identify")}
+              className="bg-gray-800 hover:bg-gray-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105"
+            >
+              Login mit Discord
+            </button>
+          ) : (
+            <div className="flex items-center space-x-4">
+              <Image
+                src={userProfile?.avatar || '/assets/icons/default-avatar.png'}
+                alt="User Avatar"
+                width={48}
+                height={48}
+                className="rounded-full"
+              />
+              <span className="text-lg md:text-xl text-gray-300">{userProfile?.username}</span>
+            </div>
+          )}
+        </div>
       </section>
 
       {/* Features */}
       <section className="py-32 px-8 md:px-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 text-center">
-          {/* Feature Cards */}
           {(Object.keys(icons) as Array<keyof typeof icons>).map((feature) => (
-            <div key={feature} className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden animated-box snake-animation">
+            <div key={feature} className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden">
               <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
               <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">{feature}</h2>
-              <p className="text-gray-400">Beschreibung für {feature}.</p>
-              <div className="animated-icon mt-6">
+              <p className="text-gray-400">Erkunde die {feature}-Funktionalität von Octra Bot.</p>
+              <div className="mt-6">
                 <Image
-                  src={fallbacks[feature] || icons[feature] || '/assets/icons/default-icon.png'}
+                  src={icons[feature] || '/assets/icons/default-icon.png'}
                   alt={`${feature} Icon`}
                   width={64}
                   height={64}
@@ -181,7 +126,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <footer className="py-8 text-center text-gray-500 border-t border-gray-800">
-        © 2025 Nova Bot. Alle Rechte vorbehalten.
+        © 2025 Octra Bot. Alle Rechte vorbehalten.
       </footer>
     </main>
   );
