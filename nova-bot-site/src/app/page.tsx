@@ -82,7 +82,7 @@ export default function HomePage() {
           </button>
           {!isLoggedIn ? (
             <button
-              onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1365320188576403486&redirect_uri=www.bot-nova.vercel.app&response_type=code&scope=identify")}
+              onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1363531532127437003&response_type=code&redirect_uri=https%3A%2F%2Fbot-nova.vercel.app%2F&scope=identify")}
               className="bg-gray-800 hover:bg-gray-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105"
             >
               Login mit Discord
