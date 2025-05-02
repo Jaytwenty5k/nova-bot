@@ -54,13 +54,13 @@ export default function HomePage() {
   }, []);
 
   return (
-    <main className="bg-gradient-to-b from-gray-900 via-black to-gray-900 min-h-screen text-white font-sans">
+    <main className="bg-gradient-to-b from-gray-900 via-black to-gray-900 min-h-screen text-white font-sans animate-fade-in">
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 md:p-8 bg-black bg-opacity-70 backdrop-blur-md border-b border-gray-800 z-50 shadow-lg">
-        <div className="text-3xl font-extrabold text-purple-400">Octra Bot</div>
+      <nav className="fixed top-0 left-0 w-full flex justify-between items-center p-6 md:p-8 bg-black bg-opacity-70 backdrop-blur-md border-b border-gray-800 z-50 shadow-lg transition-transform duration-500 ease-in-out transform hover:scale-105">
+        <div className="text-3xl font-extrabold text-purple-400 animate-pulse">Octra Bot</div>
         <div className="space-x-6 text-lg flex items-center">
-          <Link href="/" className="hover:text-purple-300 transition">Home</Link>
-          <Link href="#" className="hover:text-purple-300 transition">Support</Link>
+          <Link href="/" className="hover:text-purple-300 transition duration-300 ease-in-out transform hover:scale-110">Home</Link>
+          <Link href="#" className="hover:text-purple-300 transition duration-300 ease-in-out transform hover:scale-110">Support</Link>
         </div>
       </nav>
 
@@ -68,22 +68,22 @@ export default function HomePage() {
       <div className="h-24"></div>
 
       {/* Hero Section */}
-      <section className="flex flex-col items-center justify-center text-center py-40 px-8 md:px-20 bg-gradient-to-b from-purple-800 to-black">
+      <section className="flex flex-col items-center justify-center text-center py-40 px-8 md:px-20 bg-gradient-to-b from-purple-800 to-black animate-slide-up">
         <h1 className="text-6xl md:text-8xl font-extrabold mb-12 animate-pulse">Willkommen bei Octra Bot</h1>
-        <p className="text-lg md:text-2xl text-gray-300 mb-16">
+        <p className="text-lg md:text-2xl text-gray-300 mb-16 animate-fade-in">
           Der leistungsstarke Discord Bot für Automatisierung, Moderation, Wirtschaft und mehr.
         </p>
         <div className="flex flex-col md:flex-row gap-6">
           <button
             onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1365320188576403486&permissions=8&scope=bot")}
-            className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105"
+            className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 animate-bounce"
           >
             Bot einladen
           </button>
           {!isLoggedIn ? (
             <button
               onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1363531532127437003&response_type=code&redirect_uri=https%3A%2F%2Fbot-nova.vercel.app%2F&scope=identify")}
-              className="bg-gray-800 hover:bg-gray-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105"
+              className="bg-gray-800 hover:bg-gray-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 animate-bounce"
             >
               Login mit Discord
             </button>
@@ -94,7 +94,7 @@ export default function HomePage() {
                 alt="User Avatar"
                 width={48}
                 height={48}
-                className="rounded-full"
+                className="rounded-full animate-fade-in"
               />
               <span className="text-lg md:text-xl text-gray-300">{userProfile?.username}</span>
             </div>
@@ -106,7 +106,10 @@ export default function HomePage() {
       <section className="py-32 px-8 md:px-20 bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 text-center">
           {(Object.keys(icons) as Array<keyof typeof icons>).map((feature) => (
-            <div key={feature} className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden">
+            <div
+              key={feature}
+              className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-105 animate-slide-up"
+            >
               <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
               <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">{feature}</h2>
               <p className="text-gray-400">Erkunde die {feature}-Funktionalität von Octra Bot.</p>
@@ -116,7 +119,7 @@ export default function HomePage() {
                   alt={`${feature} Icon`}
                   width={64}
                   height={64}
-                  className="w-16 h-16 mx-auto"
+                  className="w-16 h-16 mx-auto animate-fade-in"
                 />
               </div>
             </div>
@@ -125,7 +128,7 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-gray-500 border-t border-gray-800">
+      <footer className="py-8 text-center text-gray-500 border-t border-gray-800 animate-fade-in">
         © 2025 Octra Bot. Alle Rechte vorbehalten.
       </footer>
     </main>
