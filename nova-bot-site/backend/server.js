@@ -2,9 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
 const querystring = require('querystring');
+const connectToDatabase = require('../../database/connection');
+const User = require('../../database/models/User');
 
 const app = express();
 app.use(bodyParser.json());
+
+connectToDatabase();
 
 // Temporary in-memory database
 const tempDatabase = {};
@@ -57,7 +61,16 @@ app.get('/api/auth/discord/callback', async (req, res) => {
         });
 
         const user = userResponse.data;
-        tempDatabase[user.id] = { profilePicture: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`, username: user.username };
+
+        // Speichere den Benutzer in der MongoDB-Datenbank
+        const existingUser = await User.findOne({ discordId: user.id });
+        if (!existingUser) {
+            await User.create({
+                discordId: user.id,
+                username: user.username,
+                avatar: `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`,
+            });
+        }
 
         res.status(200).send({ message: 'Authentication successful', user });
     } catch (error) {
