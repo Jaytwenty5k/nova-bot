@@ -45,18 +45,24 @@ export default function HomePage() {
   });
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      const response = await fetch("/api/user");
-      if (response.ok) {
-        const data = await response.json();
-        const user = { avatar: data.avatar, username: data.username };
-        setUserProfile(user);
-        setIsLoggedIn(true);
-        await saveUserToDatabase(user);
-      }
-    };
-
-    fetchUserProfile();
+    const storedUser = localStorage.getItem("userProfile");
+    if (storedUser) {
+      setUserProfile(JSON.parse(storedUser));
+      setIsLoggedIn(true);
+    } else {
+      const fetchUserProfile = async () => {
+        const response = await fetch("/api/user");
+        if (response.ok) {
+          const data = await response.json();
+          const user = { avatar: data.avatar, username: data.username };
+          setUserProfile(user);
+          setIsLoggedIn(true);
+          localStorage.setItem("userProfile", JSON.stringify(user));
+          await saveUserToDatabase(user);
+        }
+      };
+      fetchUserProfile();
+    }
   }, []);
 
   return (
@@ -66,21 +72,79 @@ export default function HomePage() {
         <div className="text-4xl font-extrabold text-purple-400 tracking-wide animate-pulse">
           Octra Bot
         </div>
-        <div className="space-x-6 text-lg flex items-center">
+        <div className="hidden md:flex space-x-6 text-lg items-center">
           <Link
-            href="/"
+            href="/dashboard"
             className="hover:text-purple-300 transition duration-300 ease-in-out transform hover:scale-110"
           >
-            Home
+            Dashboard
           </Link>
           <Link
-            href="#"
+            href="/support"
             className="hover:text-purple-300 transition duration-300 ease-in-out transform hover:scale-110"
           >
             Support
           </Link>
+          {isLoggedIn && userProfile && (
+            <div className="flex items-center space-x-4">
+              <Image
+                src={userProfile.avatar}
+                alt="User Avatar"
+                width={32}
+                height={32}
+                className="rounded-full"
+              />
+              <span className="text-lg">{userProfile.username}</span>
+            </div>
+          )}
         </div>
       </nav>
+
+      {/* Mobile Bottom Navigation */}
+      {isLoggedIn && (
+        <div className="fixed bottom-0 left-0 w-full bg-black bg-opacity-80 backdrop-blur-md border-t border-purple-800 z-50 shadow-lg md:hidden flex justify-around py-4">
+          <Link
+            href="/dashboard"
+            className="flex flex-col items-center text-gray-300 hover:text-purple-300"
+          >
+            <Image
+              src="/assets/icons/dashboard-icon.png"
+              alt="Dashboard"
+              width={24}
+              height={24}
+            />
+            <span className="text-sm">Dashboard</span>
+          </Link>
+          <Link
+            href="/support"
+            className="flex flex-col items-center text-gray-300 hover:text-purple-300"
+          >
+            <Image
+              src="/assets/icons/support-icon.png"
+              alt="Support"
+              width={24}
+              height={24}
+            />
+            <span className="text-sm">Support</span>
+          </Link>
+          <Link
+            href="/profile"
+            className="flex flex-col items-center text-gray-300 hover:text-purple-300"
+          >
+            <Image
+              src={userProfile?.avatar || "/assets/icons/default-avatar.png"}
+              alt="Profile"
+              width={24}
+              height={24}
+              className="rounded-full"
+            />
+            <span className="text-sm">Profil</span>
+          </Link>
+        </div>
+      )}
+
+      {/* Platzhalter für Navbar-Höhe */}
+      <div className="h-24"></div>
 
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-40 px-8 md:px-20 bg-gradient-to-b from-purple-800 to-black">
