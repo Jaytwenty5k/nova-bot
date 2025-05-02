@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
 
 const icons = {
   moderation: '/assets/icons/moderation-icon.png',
@@ -37,6 +38,11 @@ export default function HomePage() {
   const navigateTo = (url: string) => {
     window.location.href = url;
   };
+
+  const { ref: featuresRef, inView: featuresInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   useEffect(() => {
     const fetchUserProfile = async () => {
@@ -76,16 +82,17 @@ export default function HomePage() {
         <div className="flex flex-col md:flex-row gap-6">
           <button
             onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1365320188576403486&permissions=8&scope=bot")}
-            className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 animate-bounce"
+            className="bg-purple-600 hover:bg-purple-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 animate-text-glow"
           >
             Bot einladen
           </button>
           {!isLoggedIn ? (
             <button
               onClick={() => navigateTo("https://discord.com/oauth2/authorize?client_id=1363531532127437003&response_type=code&redirect_uri=https%3A%2F%2Fbot-nova.vercel.app%2F&scope=identify")}
-              className="bg-gray-800 hover:bg-gray-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105 animate-bounce"
+              className="relative bg-gray-800 hover:bg-gray-700 text-white py-4 px-16 rounded-full text-lg md:text-xl transition shadow-lg transform hover:scale-105"
             >
-              Login mit Discord
+              <div className="absolute inset-0 rounded-full border-2 border-transparent animate-gradient-border"></div>
+              <span className="relative">Login mit Discord</span>
             </button>
           ) : (
             <div className="flex items-center space-x-4">
@@ -103,12 +110,19 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section className="py-32 px-8 md:px-20 bg-[#0a0a0a]">
+      <section
+        ref={featuresRef}
+        className={`py-32 px-8 md:px-20 bg-[#0a0a0a] ${
+          featuresInView ? 'animate-fade-in' : 'opacity-0'
+        }`}
+      >
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-20 text-center">
           {(Object.keys(icons) as Array<keyof typeof icons>).map((feature) => (
             <div
               key={feature}
-              className="relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-105 animate-slide-up"
+              className={`relative bg-black bg-opacity-50 rounded-lg p-10 shadow-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-105 ${
+                featuresInView ? 'animate-slide-up' : 'opacity-0'
+              }`}
             >
               <div className="absolute inset-0 rounded-lg border-2 border-transparent animate-gradient-border"></div>
               <h2 className="text-2xl font-semibold mb-6 text-purple-400 capitalize">{feature}</h2>
@@ -119,7 +133,7 @@ export default function HomePage() {
                   alt={`${feature} Icon`}
                   width={64}
                   height={64}
-                  className="w-16 h-16 mx-auto animate-fade-in"
+                  className="w-16 h-16 mx-auto"
                 />
               </div>
             </div>
