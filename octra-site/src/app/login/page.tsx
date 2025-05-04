@@ -39,14 +39,14 @@ export default function LoginPage() {
             required
           />
         </div>
+      </form>
+      <div className="flex flex-col items-center space-y-4">
         <button
           type="submit"
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded font-medium transition transform hover:scale-105"
+          className="bg-purple-600 hover:bg-purple-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-105 shadow-lg block text-center"
         >
           Login
         </button>
-      </form>
-      <div className="flex flex-col items-center space-y-4">
         <Link
           href="/signin"
           className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-105 shadow-lg block text-center"
