@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 
 export default function SigninPage() {
   const handleSignin = (e: React.FormEvent) => {
@@ -55,6 +56,14 @@ export default function SigninPage() {
         >
           Registrieren
         </button>
+        <div className="mt-6 flex justify-between items-center">
+          <Link
+            href="/login"
+            className="text-purple-400 hover:text-purple-300 transition"
+          >
+            Bereits registriert? Login
+          </Link>
+        </div>
       </form>
     </main>
   );
