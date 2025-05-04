@@ -11,10 +11,10 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-purple-900 via-black to-purple-900 flex items-center justify-center text-white">
+    <main className="min-h-screen bg-gradient-to-b from-purple-900 via-black to-purple-900 flex flex-col items-center justify-center text-white">
       <form
         onSubmit={handleLogin}
-        className="bg-black bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md"
+        className="bg-black bg-opacity-80 p-8 rounded-lg shadow-lg w-full max-w-md mb-8"
       >
         <h1 className="text-3xl font-bold mb-6 text-center">Login</h1>
         <div className="mb-4">
@@ -41,19 +41,25 @@ export default function LoginPage() {
         </div>
         <button
           type="submit"
-          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded font-medium transition"
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded font-medium transition transform hover:scale-105"
         >
           Login
         </button>
-        <div className="mt-6 flex justify-between items-center">
-          <Link
-            href="/signin"
-            className="text-purple-400 hover:text-purple-300 transition"
-          >
-            Noch kein Konto? Registrieren
-          </Link>
-        </div>
       </form>
+      <div className="flex flex-col items-center space-y-4">
+        <Link
+          href="/signin"
+          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-105 shadow-lg"
+        >
+          Registrieren
+        </Link>
+        <Link
+          href="/invite"
+          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-105 shadow-lg"
+        >
+          Bot einladen
+        </Link>
+      </div>
     </main>
   );
 }
