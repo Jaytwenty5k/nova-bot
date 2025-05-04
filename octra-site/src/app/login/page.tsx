@@ -43,13 +43,13 @@ export default function LoginPage() {
       <div className="flex flex-col items-center space-y-4">
         <button
           type="submit"
-          className="bg-purple-600 hover:bg-purple-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-105 shadow-lg block text-center"
+          className="bg-purple-600 hover:bg-purple-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-110 shadow-lg block text-center animate-bounce"
         >
           Login
         </button>
         <Link
           href="/signin"
-          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-105 shadow-lg block text-center"
+          className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white py-3 px-8 rounded-full text-lg font-medium transition transform hover:scale-110 shadow-lg block text-center animate-bounce"
         >
           Registrieren
         </Link>
